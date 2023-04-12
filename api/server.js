@@ -20,6 +20,8 @@ async function main() {
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
+app.use(express.json());
+
 /////middleware
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
@@ -28,7 +30,6 @@ app.use("/api/orders", orderRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
-
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
