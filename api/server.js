@@ -1,3 +1,4 @@
+import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
@@ -21,6 +22,7 @@ async function main() {
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 /////middleware
+app.use(cors({ origin: "http://127.0.0.1:5173", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
