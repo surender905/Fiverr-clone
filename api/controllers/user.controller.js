@@ -1,11 +1,12 @@
-import jwt from "jsonwebtoken";
 import User from "../models/user.modal.js";
 
-export const getUser = (req, res) => {
-  res.send("hello");
+export const getUser = async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  res.status(200).send(user);
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res, nes) => {
   const user = await User.findById(req.params.id);
 
   if (req.userId !== user._id.toString()) {
@@ -14,7 +15,4 @@ export const deleteUser = async (req, res) => {
   await User.findByIdAndDelete(req.params.id);
 
   res.status(200).send("deleted user");
- 
-
-
 };

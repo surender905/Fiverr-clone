@@ -78,7 +78,9 @@ function Navbar() {
             </div>
           ) : (
             <>
-              <span>Sign in</span>
+              <Link className="link" to="/login">
+                Sign in
+              </Link>
               <Link className="link" to="/register">
                 <button>Join</button>
               </Link>

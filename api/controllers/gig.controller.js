@@ -34,7 +34,8 @@ export const getGigs = async (req, res, next) => {
     ...(q.title && { title: { $regex: q.search, $options: "i" } }),
   };
   try {
-    const gigs = Gig.find(filters);
+    const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
+    if (!gigs) return next(createError(404, "No gigs found "));
     res.status(200).json(gigs);
   } catch (error) {
     next(error);

@@ -4,9 +4,8 @@ import { verifyToken } from "../middlewares/jwt.js";
 
 const router = express.Router();
 
-router.get("/", getUser);
+router.get("/:id", getUser);
 
-
-router.delete("/:id",verifyToken, deleteUser)
+router.delete("/:id", verifyToken, deleteUser);
 
 export default router;
