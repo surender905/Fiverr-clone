@@ -29,7 +29,7 @@ function Register() {
     });
   };
 
-  console.log(user);
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = await upload(file);
