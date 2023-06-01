@@ -1,17 +1,17 @@
 import Gig from "../models/gig.model.js";
 import Order from "../models/order.model.js";
-// export const intent = async (req, res, next) => {
-//   const stripe = new Stripe(process.env.STRIPE);
+export const intent = async (req, res, next) => {
+  const stripe = new Stripe(process.env.STRIPE);
 
-//   const gig = await Gig.findById(req.params.id);
+  const gig = await Gig.findById(req.params.id);
 
-//   const paymentIntent = await stripe.paymentIntents.create({
-//     amount: gig.price * 100,
-//     currency: "usd",
-//     automatic_payment_methods: {
-//       enabled: true,
-//     },
-//   });
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: gig.price * 100,
+    currency: "usd",
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
 
 //   const newOrder = new Order({
 //     gigId: gig._id,
@@ -30,24 +30,24 @@ import Order from "../models/order.model.js";
 //   });
 // };
 
-export const createOrder = async (req, res, next) => {
-  const gig = await Gig.findById(req.params.gigId);
-  try {
-    const newOrder = new Order({
-      gigId: gig._id,
-      img: gig.cover,
-      title: gig.title,
-      buyerId: req.userId,
-      sellerId: gig.userId,
-      price: gig.price,
-      payment_intent: "test",
-    });
-    await newOrder.save();
-    res.status(200).send("successful");
-  } catch (error) {
-    next(error);
-  }
-};
+// export const createOrder = async (req, res, next) => {
+//   const gig = await Gig.findById(req.params.gigId);
+//   try {
+//     const newOrder = new Order({
+//       gigId: gig._id,
+//       img: gig.cover,
+//       title: gig.title,
+//       buyerId: req.userId,
+//       sellerId: gig.userId,
+//       price: gig.price,
+//       payment_intent: "test",
+//     });
+//     await newOrder.save();
+//     res.status(200).send("successful");
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 export const getOrders = async (req, res, next) => {
   try {
