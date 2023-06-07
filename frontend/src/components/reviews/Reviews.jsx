@@ -1,6 +1,7 @@
 import React from "react";
 import Review from "./Review";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
 
 const Reviews = ({ gigId }) => {
   const queryClient = useQueryClient();
